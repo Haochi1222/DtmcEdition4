@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="dut.haochi.dtmc">
+  <dtmc ModuleName="acme" StateVariable="state">
+    <states label="a">
+      <transitions probability="1.0" to="//@dtmc.0/@states.1"/>
+    </states>
+    <states name="1" label="a">
+      <transitions probability="1.0" to="//@dtmc.0/@states.0"/>
+    </states>
+    <states name="3" label="a">
+      <transitions probability="1.0" to="//@dtmc.0/@states.2"/>
+    </states>
+    <rewards name="time">
+      <actions name="state=0" value="5.0"/>
+      <actions name="state=1" value="5.0"/>
+    </rewards>
+  </dtmc>
+</Module>

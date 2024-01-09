@@ -1,0 +1,19 @@
+dtmc	
+module acme
+	
+	state : [0..2] init 0;
+	
+	[a]	state=0 -> 1.0:(state'=1);	
+	
+	[a]	state=1 -> 1.0:(state'=0);	
+	
+	[a]	state=2 -> 1.0:(state'=2);	
+	
+endmodule
+
+
+rewards"time"
+	state=0 : 5.0;	
+	state=1 : 5.0;	
+endrewards
+

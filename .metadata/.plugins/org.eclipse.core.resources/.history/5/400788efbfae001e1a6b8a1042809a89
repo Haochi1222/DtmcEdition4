@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="dut.haochi.dtmc">
+  <dtmc ModuleName="acme" StateVariable="state">
+    <states label="a"/>
+  </dtmc>
+</Module>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="dut.edition4.dtmc.design.Activator"
+               id="dut.edition4.dtmc.design"
+	       name="dtmc">
+    </component>
+  </extension>
+</plugin>

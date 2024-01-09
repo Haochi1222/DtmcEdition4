@@ -1,0 +1,26 @@
+dtmc	
+[%for(d in Module.all.dtmc){%]
+[%for(s in d){%]
+module [%=s.ModuleName%]
+	
+	[%=s.StateVariable%] : [0..[%=s.states.size()-1%]] init 0;
+	
+	[%for(l in s.states){%]
+	[%if(l.transitions.size() == 1){%]
+	[[%=l.label%]]	[%=s.StateVariable%]=[%=l.name%] -> [%=l.transitions.first().probability%]:([%=s.StateVariable%]'=[%=l.transitions.first().to.name.concat()%]);[%}%]	
+	[%if(l.transitions.size() == 2){%]
+	[[%=l.label%]]	[%=s.StateVariable%]=[%=l.name%] -> ([%=l.transitions.first().probability%]):([%=s.StateVariable%]'=[%=l.transitions.first().to.name.concat()%])+([%=l.transitions.second().probability%]):([%=s.StateVariable%]'=[%=l.transitions.second().to.name.concat()%]);[%}%]	
+[%}%]
+endmodule
+
+[%}%]
+[%}%]
+
+[%for(r in Reward.all){%]
+rewards"[%=r.name%]"
+	[%for(a in r.actions){%]
+	[%=a.name%] : [%=a.value%];	
+	[%}%]
+endrewards
+
+[%}%]

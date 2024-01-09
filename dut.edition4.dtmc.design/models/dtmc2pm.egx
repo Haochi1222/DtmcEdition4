@@ -1,0 +1,4 @@
+rule Markov2Text{
+	template:"dtmc2prism.egl"
+	target:"dtmc.pm"
+}

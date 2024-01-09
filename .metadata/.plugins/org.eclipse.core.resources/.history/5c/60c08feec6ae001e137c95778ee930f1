@@ -1,0 +1,69 @@
+package dut.edition4.dtmc.design.utils;
+
+import java.io.File;
+import java.util.Collection;
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.epsilon.egl.EglFileGeneratingTemplateFactory;
+import org.eclipse.epsilon.egl.EgxModule;
+import org.eclipse.epsilon.emc.emf.EmfModel;
+import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
+import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
+import org.eclipse.sirius.tools.api.ui.IExternalJavaAction;
+
+import org.eclipse.epsilon.egl.EglFileGeneratingTemplateFactory;
+import org.eclipse.epsilon.egl.EgxModule;
+import org.eclipse.epsilon.emc.emf.EmfModel;
+
+public class ExternalJavaAction1 implements IExternalJavaAction {
+
+	public ExternalJavaAction1() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void execute(Collection<? extends EObject> selections, Map<String, Object> parameters)  {
+		// TODO Auto-generated method stub
+		System.out.println("OK1");
+		EgxModule module = new EgxModule(new EglFileGeneratingTemplateFactory());
+		try {
+			module.parse(new File("E:\\Dtmc\\Edition4-runtime-EclipseApplication\\dut.edition4.dtmc.design\\models\\dtmc2pm.egx").getAbsoluteFile());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if (!module.getParseProblems().isEmpty()) {
+			System.out.println("Syntax errors found. Exiting.");
+			return;
+		}
+		// Load the EMF document
+		EmfModel model = new EmfModel();
+		model.setModelFile("E:\\Dtmc\\Edition4-runtime-EclipseApplication\\dut.edition4.dtmc.design\\models\\test.dtmc");
+		model.setName("mc");		
+		model.setMetamodelFile("E:\\Dtmc\\Edition4\\dut.edition4.dtmc\\dtmc.ecore");
+		try {
+			model.load();
+		} catch (EolModelLoadingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		module.getContext().getModelRepository().addModel(model);
+		// ... and execute
+		try {
+			module.execute();
+		} catch (EolRuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("OK");
+	}
+
+	@Override
+	public boolean canExecute(Collection<? extends EObject> selections) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}
