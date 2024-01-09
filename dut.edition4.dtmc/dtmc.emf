@@ -1,0 +1,36 @@
+@namespace(uri="dut.haochi.dtmc",prefix="")
+package dtmc;
+
+class Module{
+	val Dtmc[*] dtmc;
+}
+
+class Dtmc{
+	attr String ModuleName;
+	attr String StateVariable;  	
+	val State[*] states;
+	val Transition[*] transitions;
+	val Reward[*] rewards;
+}
+
+class State{
+	attr int name;	
+	attr String label;
+	val Transition[*] transitions;
+}
+
+class Transition{
+	//attr String name;
+	attr double probability;		
+	ref State[*] to;
+}
+
+class Reward{
+	attr String name;
+	val Action[*] actions;
+	}
+	
+class Action{
+	attr String name;
+	attr double value;
+}
